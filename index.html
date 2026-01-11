@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin | UTAU & Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation Dots (Fixed) -->
+    <nav class="nav-dots">
+        <a href="#hero" class="active" aria-label="Go to Intro"></a>
+        <a href="#about" aria-label="Go to About"></a>
+        <a href="#utau" aria-label="Go to UTAU"></a>
+        <a href="#github" aria-label="Go to GitHub"></a>
+        <a href="#contact" aria-label="Go to Contact"></a>
+    </nav>
+
+    <main class="scroller">
+
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="snap-section" data-theme="dark">
+            <div class="content-wrapper">
+                <h1 class="glitch" data-text="KEVIN">KEVIN</h1>
+                <p class="subtitle">Developer. UTAU Producer. La Cuchina.</p>
+                <div class="scroll-indicator">
+                    <span>SCROLL</span>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: ABOUT -->
+        <section id="about" class="snap-section" data-theme="light">
+            <div class="content-wrapper">
+                <h2>01. Who?</h2>
+                <div class="text-block">
+                    <p>I make things. I also make things sing.</p>
+                    <p>Code is my tool, sound is my medium.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: UTAU -->
+        <section id="utau" class="snap-section" data-theme="blue">
+            <div class="content-wrapper split-layout">
+                <div class="text-side">
+                    <h2>02. UTAU</h2>
+                    <h3 class="utau-name">K-01</h3>
+                    <p>A wide, clear vocal for any genre includes 2 languages and 10 styles.</p>
+                    <div class="audio-player-mock">
+                        <button class="play-btn">▶</button>
+                        <div class="waveform"></div>
+                    </div>
+                    <a href="#" class="btn primary">Download Voicebank</a>
+                </div>
+                <div class="visual-side">
+                    <!-- Placeholder for the generated image -->
+                    <img src="utau_character_placeholder_anime_style.png" alt="UTAU Character Design"
+                        class="character-art">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: GITHUB -->
+        <section id="github" class="snap-section" data-theme="dark">
+            <div class="content-wrapper">
+                <h2>03. Code</h2>
+                <div class="projects-grid">
+                    <article class="project-card">
+                        <h3>wait</h3>
+                        <p>wait</p>
+                        <div class="tags">
+                            <span>wait</span> <span>wait</span> <span>wait</span>
+                        </div>
+                        <a href="https://github.com/kevin/rhythm" class="project-link">View Repo ↗</a>
+                    </article>
+                    <article class="project-card">
+                        <h3>TuxOS</h3>
+                        <p>A retro desktop environment simulator in C and Raylib.</p>
+                        <div class="tags">
+                            <span>C</span> <span>Raylib</span> <span>System</span>
+                        </div>
+                        <a href="https://github.com/kevin/tuxos" class="project-link">View Repo ↗</a>
+                    </article>
+                    <article class="project-card">
+                        <h3>wait</h3>
+                        <p>wait</p>
+                        <div class="tags">
+                            <span>wait</span> <span>wait</span>
+                        </div>
+                        <a href="#" class="project-link">View Repo ↗</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: CONTACT -->
+        <section id="contact" class="snap-section" data-theme="black">
+            <div class="content-wrapper centered">
+                <h2>04. Reach Out</h2>
+                <p>Communicate with me my children</p>
+                <div class="social-links">
+                    <a href="#" class="social-btn">Twitter / X</a>
+                    <a href="#" class="social-btn">Tiktok</a>
+                    <a href="#" class="social-btn">Discord</a>
+                    <a href="#" class="social-btn">Email</a>
+                </div>
+                <footer>
+                    <small>&copy; 2026 Kevin. Built with &hearts; and &lt;/&gt;</small>
+                </footer>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

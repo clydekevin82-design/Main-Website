@@ -1,0 +1,343 @@
+/* CSS Reset & Variables */
+:root {
+    --bg-dark: #0f0f0f;
+    --bg-light: #f4f4f4;
+    --bg-blue: #0a192f;
+    --bg-black: #000000;
+
+    --text-main: #ffffff;
+    --text-inv: #0f0f0f;
+    --accent: #64ffda;
+    --accent-dim: rgba(100, 255, 218, 0.1);
+
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Space Mono', monospace;
+
+    --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow: hidden;
+    /* Hide main scrollbar */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* Scroll Snap Container */
+.scroller {
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+
+    /* Hide scrollbar for cleaner look */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroller::-webkit-scrollbar {
+    display: none;
+}
+
+/* Section Common Styles */
+.snap-section {
+    height: 100vh;
+    width: 100vw;
+    scroll-snap-align: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.content-wrapper {
+    max-width: 1200px;
+    width: 100%;
+    opacity: 0;
+    /* transform removed to allow JS control */
+    transition: opacity 0.8s var(--easing);
+}
+
+/* Reveal Animation */
+.snap-section.in-view .content-wrapper {
+    opacity: 1;
+    /* Transform handled by JS for zoom effect now */
+}
+
+/* Letter Pop Animation */
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    animation: none;
+    will-change: transform, opacity;
+}
+
+.snap-section.in-view .char {
+    animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) rotate(10deg);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+        filter: blur(0);
+    }
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+}
+
+/* Navigation Dots */
+.nav-dots {
+    position: fixed;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    z-index: 100;
+}
+
+.nav-dots a {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+}
+
+.nav-dots a.active {
+    background: var(--accent);
+    transform: scale(1.5);
+}
+
+/* --- HERO SECTION --- */
+#hero {
+    background-color: var(--bg-dark);
+}
+
+#hero h1 {
+    font-size: 12vw;
+    line-height: 0.9;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -0.05em;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #888;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: auto;
+    right: 4rem;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    opacity: 0.6;
+}
+
+.scroll-indicator .line {
+    width: 1px;
+    height: 60px;
+    background: var(--text-main);
+}
+
+/* --- ABOUT SECTION --- */
+#about {
+    background-color: var(--bg-light);
+    color: var(--text-inv);
+}
+
+.text-block p {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 1rem;
+}
+
+/* --- UTAU SECTION --- */
+#utau {
+    background-color: var(--bg-blue);
+}
+
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.utau-name {
+    font-size: 5rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+}
+
+.character-art {
+    width: 100%;
+    max-height: 80vh;
+    object-fit: contain;
+    filter: grayscale(20%) drop-shadow(0 0 20px rgba(100, 255, 218, 0.2));
+    transition: filter 0.3s ease;
+}
+
+.character-art:hover {
+    filter: grayscale(0%) drop-shadow(0 0 30px rgba(100, 255, 218, 0.4));
+}
+
+.btn.primary {
+    display: inline-block;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 1rem 2rem;
+    margin-top: 2rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+}
+
+.btn.primary:hover {
+    background: var(--accent-dim);
+}
+
+/* --- GITHUB SECTION --- */
+#github {
+    background-color: var(--bg-dark);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: #1a1a1a;
+    padding: 2rem;
+    border: 1px solid #333;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+.project-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.project-card p {
+    color: #999;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.tags span {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-right: 0.5rem;
+    color: var(--accent);
+}
+
+.project-link {
+    display: block;
+    margin-top: 1.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+/* --- CONTACT SECTION --- */
+#contact {
+    background-color: var(--bg-black);
+}
+
+.centered {
+    text-align: center;
+}
+
+.social-links {
+    margin: 3rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-bottom: 2px solid transparent;
+}
+
+.social-btn:hover {
+    border-bottom-color: var(--accent);
+    color: var(--accent);
+}
+
+footer {
+    margin-top: 5rem;
+    color: #555;
+    font-size: 0.8rem;
+}
+
+/* Quick Response Tweaks */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 18vw !important;
+    }
+
+    h2 {
+        font-size: 3rem;
+    }
+
+    .split-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .character-art {
+        max-height: 50vh;
+    }
+}
