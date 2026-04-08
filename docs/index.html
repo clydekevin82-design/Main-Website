@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kevin | UTAU & Dev</title>
+    <title>Kevin | Developer & UTAU Producer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -14,6 +14,17 @@
 </head>
 
 <body>
+
+    <div class="starfield" aria-hidden="true">
+        <div class="stars stars-back"></div>
+        <div class="stars stars-mid"></div>
+        <div class="stars stars-front"></div>
+    </div>
+
+    <div class="journey-rail" aria-hidden="true">
+        <span class="journey-label">Journey</span>
+        <div class="journey-track"><span class="journey-progress"></span></div>
+    </div>
 
     <!-- Navigation Dots (Fixed) -->
     <nav class="nav-dots">
@@ -29,10 +40,11 @@
         <!-- SECTION 1: HERO -->
         <section id="hero" class="snap-section" data-theme="dark">
             <div class="content-wrapper">
+                <p class="eyebrow">Start Here</p>
                 <h1 class="glitch" data-text="KEVIN">KEVIN</h1>
-                <p class="subtitle">Developer. UTAU Producer. La Cuchina.</p>
+                <p class="subtitle">Developer and UTAU producer creating interactive work, original voicebanks, and expressive digital projects.</p>
                 <div class="scroll-indicator">
-                    <span>SCROLL</span>
+                    <span>Scroll the story</span>
                     <div class="line"></div>
                 </div>
             </div>
@@ -41,10 +53,32 @@
         <!-- SECTION 2: ABOUT -->
         <section id="about" class="snap-section" data-theme="light">
             <div class="content-wrapper">
+                <p class="eyebrow">Chapter One</p>
                 <h2>01. Who?</h2>
                 <div class="text-block">
-                    <p>I make things. I also make things sing.</p>
-                    <p>Code is my tool, sound is my medium.</p>
+                    <p>I build projects across web, code, and voice synthesis.</p>
+                    <p>My work blends development, design, and sound to create experiences with personality.</p>
+                </div>
+                <div class="autobio-card about-autobio">
+                    <p class="autobio-label">Quick Bio Template</p>
+                    <p>Hi, I'm [name]. I'm a [role] who makes [kind of work]. I focus on [strength/style], and I like building things that feel [mood].</p>
+                </div>
+                <div class="journey-cards">
+                    <article class="journey-card">
+                        <span class="card-number">01</span>
+                        <h3>Build</h3>
+                        <p>Web projects, experiments, and interfaces shaped around atmosphere and interaction.</p>
+                    </article>
+                    <article class="journey-card">
+                        <span class="card-number">02</span>
+                        <h3>Voice</h3>
+                        <p>UTAU voicebanks designed for range, character, and multilingual performance.</p>
+                    </article>
+                    <article class="journey-card">
+                        <span class="card-number">03</span>
+                        <h3>World</h3>
+                        <p>Projects built with a strong sense of identity, mood, and visual direction.</p>
+                    </article>
                 </div>
             </div>
         </section>
@@ -53,17 +87,32 @@
         <section id="utau" class="snap-section" data-theme="blue">
             <div class="content-wrapper split-layout">
                 <div class="text-side">
+                    <p class="eyebrow">Chapter Two</p>
                     <h2>02. UTAU</h2>
                     <h3 class="utau-name">Kevin-01</h3>
-                    <p>A wide, clear vocal for any genre includes 2 languages and 10 styles.</p>
-                    <div class="button-group">
+                    <p class="utau-summary">A clear, flexible vocal built for multiple genres, with Japanese, English, and Spanish support plus expressive banks for different styles.</p>
+                    <div class="utau-features">
+                        <div class="feature-chip">Japanese Bank</div>
+                        <div class="feature-chip">English Bank</div>
+                        <div class="feature-chip">Spanish Bank</div>
+                        <div class="feature-chip">Fem Bank</div>
+                        <div class="feature-chip">10 Styles</div>
+                    </div>
+                    <div class="download-grid">
                         <a href="#" class="btn primary">Download Japanese Bank</a>
-                        <a href="#" class="btn primary" style="margin-top: 1rem;">Download English Bank</a>
+                        <a href="#" class="btn primary">Download English Bank</a>
+                        <a href="#" class="btn primary">Download Spanish Bank</a>
+                        <a href="#" class="btn primary">Download Fem Bank</a>
                     </div>
                 </div>
                 <div class="visual-side">
-                    <!-- Placeholder for the generated image -->
-                    <img src="IMG_4464.png" alt="UTAU Character Design" class="character-art">
+                    <div class="visual-frame">
+                        <img src="IMG_4464.png" alt="UTAU Character Design" class="character-art">
+                        <div class="visual-caption">
+                            <span>Character concept</span>
+                            <span>Original design for Kevin-01</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -71,31 +120,32 @@
         <!-- SECTION 4: GITHUB -->
         <section id="github" class="snap-section" data-theme="dark">
             <div class="content-wrapper">
+                <p class="eyebrow">Chapter Three</p>
                 <h2>03. Code</h2>
                 <div class="projects-grid">
                     <article class="project-card">
-                        <h3>wait</h3>
-                        <p>wait</p>
+                        <h3>Rhythm</h3>
+                        <p>A music-focused project exploring timing, interaction, and audio-driven design.</p>
                         <div class="tags">
-                            <span>wait</span> <span>wait</span> <span>wait</span>
+                            <span>Web</span> <span>Audio</span> <span>Interactive</span>
                         </div>
                         <a href="https://github.com/kevin/rhythm" class="project-link">View Repo ↗</a>
                     </article>
                     <article class="project-card">
                         <h3>TuxOS</h3>
-                        <p>A retro desktop environment simulator in C and Raylib.</p>
+                        <p>A retro desktop environment simulator built in C with Raylib.</p>
                         <div class="tags">
                             <span>C</span> <span>Raylib</span> <span>System</span>
                         </div>
                         <a href="https://github.com/kevin/tuxos" class="project-link">View Repo ↗</a>
                     </article>
                     <article class="project-card">
-                        <h3>wait</h3>
-                        <p>wait</p>
+                        <h3>More Projects Soon</h3>
+                        <p>More experiments, tools, and creative builds will be added here over time.</p>
                         <div class="tags">
-                            <span>wait</span> <span>wait</span>
+                            <span>In Progress</span> <span>Portfolio</span>
                         </div>
-                        <a href="#" class="project-link">View Repo ↗</a>
+                        <a href="#contact" class="project-link">Get in Touch ↗</a>
                     </article>
                 </div>
             </div>
@@ -104,8 +154,9 @@
         <!-- SECTION 5: CONTACT -->
         <section id="contact" class="snap-section" data-theme="black">
             <div class="content-wrapper centered">
+                <p class="eyebrow">Final Stop</p>
                 <h2>04. Reach Out</h2>
-                <p>Communicate with me my children</p>
+                <p>If you'd like to collaborate, ask a question, or follow my work, you can reach me here.</p>
                 <div class="social-links">
                     <a href="https://twitter.com/KevinClyde58720" class="social-btn">Twitter (@KevinClyde58720)</a>
                     <a href="https://tiktok.com/@_kevin1073" class="social-btn">TikTok (@_kevin1073)</a>

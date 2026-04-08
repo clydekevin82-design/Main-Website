@@ -2,6 +2,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const sections = document.querySelectorAll('.snap-section');
     const navDots = document.querySelectorAll('.nav-dots a');
     const scroller = document.querySelector('.scroller');
+    const progressBar = document.querySelector('.journey-progress');
+    const starLayers = {
+        back: document.querySelector('.stars-back'),
+        mid: document.querySelector('.stars-mid'),
+        front: document.querySelector('.stars-front')
+    };
+
+    const buildStars = (container, count, minSize, maxSize) => {
+        if (!container) return;
+
+        const fragment = document.createDocumentFragment();
+        for (let i = 0; i < count; i += 1) {
+            const star = document.createElement('span');
+            const size = minSize + Math.random() * (maxSize - minSize);
+
+            star.className = 'star';
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 120}%`;
+            fragment.appendChild(star);
+        }
+
+        container.replaceChildren(fragment);
+    };
+
+    buildStars(starLayers.back, 70, 1, 2.2);
+    buildStars(starLayers.mid, 45, 1.2, 2.8);
+    buildStars(starLayers.front, 24, 1.6, 3.6);
 
     // 1. Text Splitting for "Letter Pop"
     const headings = document.querySelectorAll('h1, h2, .utau-name');
@@ -35,10 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Theme Aware UI
                 const theme = entry.target.dataset.theme;
                 const dotsContainer = document.querySelector('.nav-dots');
+                const rail = document.querySelector('.journey-rail');
                 if (theme === 'light') {
                     dotsContainer.style.filter = 'invert(1)';
+                    if (rail) rail.style.filter = 'invert(1)';
                 } else {
                     dotsContainer.style.filter = 'invert(0)';
+                    if (rail) rail.style.filter = 'invert(0)';
                 }
             } else {
                 entry.target.classList.remove('in-view'); // Re-trigger animation on re-entry
@@ -48,50 +80,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(section => observer.observe(section));
 
-    // 3. Seamless Zoom Transition Logic
-    scroller.addEventListener('scroll', () => {
+    // 3. Journey Motion Logic
+    const updateScrollEffects = () => {
         const viewportHeight = window.innerHeight;
+        const maxScroll = scroller.scrollHeight - scroller.clientHeight;
+        const scrollProgress = maxScroll > 0 ? scroller.scrollTop / maxScroll : 0;
+
+        if (progressBar) {
+            progressBar.style.transform = `scaleY(${Math.max(scrollProgress, 0.08)})`;
+        }
+
+        if (starLayers.back) {
+            starLayers.back.style.transform = `translate3d(0, ${scrollProgress * -60}px, 0)`;
+        }
+
+        if (starLayers.mid) {
+            starLayers.mid.style.transform = `translate3d(0, ${scrollProgress * -140}px, 0)`;
+        }
+
+        if (starLayers.front) {
+            starLayers.front.style.transform = `translate3d(0, ${scrollProgress * -260}px, 0)`;
+        }
 
         sections.forEach(section => {
             const rect = section.getBoundingClientRect();
             const content = section.querySelector('.content-wrapper');
             if (!content) return;
 
-            // distance from center of viewport (0 is centered)
-            const distanceFromCenter = rect.top;
+            const centerOffset = rect.top + (rect.height / 2) - (viewportHeight / 2);
+            const normalized = Math.max(-1, Math.min(1, centerOffset / viewportHeight));
+            const absNormalized = Math.abs(normalized);
+            const translateY = normalized * 36;
+            const rotateX = normalized * -8;
+            const scale = 1 - (absNormalized * 0.08);
+            const opacity = 1 - (absNormalized * 0.32);
 
-            // Normalize distance: 0 when centered, 1 when one full viewport down, -1 when up
-            let progress = distanceFromCenter / viewportHeight;
-
-            let scale = 1;
-            let opacity = 1;
-            let blur = 0;
-
-            if (progress <= 0) {
-                // Section is LEAVING (scrolling up) or Centered
-                // We want it to SCALE UP (zoom in) as it leaves
-                // progress goes 0 -> -1
-                scale = 1 + Math.abs(progress) * 2; // Zoom to 3x
-                opacity = 1 - Math.abs(progress) * 1.5; // Fade out faster
-                blur = Math.abs(progress) * 10;
-            } else {
-                // Section is ENTERING (from bottom)
-                // We want it to start SMALL (zoom out) and grow to 1
-                // progress goes 1 -> 0
-                scale = 0.5 + (0.5 * (1 - progress)); // Starts at 0.5, goes to 1
-                opacity = 1 - (progress * 0.5); // Starts at 0.5 opacity
-            }
-
-            // Clamp values
-            if (opacity < 0) opacity = 0;
-
-            // Apply Transform
-            // Only apply if near viewport to save performance
-            if (progress > -1.5 && progress < 1.5) {
-                content.style.transform = `scale(${scale})`;
-                content.style.opacity = opacity;
-                content.style.filter = `blur(${blur}px)`;
-            }
+            content.style.transform = `translate3d(0, ${translateY}px, 0) rotateX(${rotateX}deg) scale(${scale})`;
+            content.style.opacity = `${Math.max(0.45, opacity)}`;
         });
-    });
+    };
+
+    scroller.addEventListener('scroll', updateScrollEffects, { passive: true });
+    window.addEventListener('resize', updateScrollEffects);
+    updateScrollEffects();
 });
